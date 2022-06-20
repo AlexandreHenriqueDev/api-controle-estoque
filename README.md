@@ -9,5 +9,7 @@
 # Executando
 
 > cd ~/DIRETORIO LOCAL/api-controle-estoque/backend
+>
 > mvn clean install
+>
 > mvn spring-boot:run
