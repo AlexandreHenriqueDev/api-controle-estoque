@@ -1,0 +1,352 @@
+{
+	"info": {
+		"_postman_id": "d4f6fc5b-4ceb-4a17-9df4-2a603245b734",
+		"name": "Controle Estoque",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18128205"
+	},
+	"item": [
+		{
+			"name": "Estoque",
+			"item": [
+				{
+					"name": "Novo estoque",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Sucess ao cadastrar estoque\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo\": \"CCC\",\n    \"nome\": \"Produtos de Teste - CCC\",\n    \"descricao\": \"Somente Produtos de Informatica\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url-ambiente}}/estoque/",
+							"host": [
+								"{{url-ambiente}}"
+							],
+							"path": [
+								"estoque",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Novo estoque - ERROR",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Erro ao cadastrar o mesmo código de estoque\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo\": \"CCC\",\n    \"nome\": \"Produtos de Teste - CCC\",\n    \"descricao\": \"Somente Produtos de Informatica\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url-ambiente}}/estoque/",
+							"host": [
+								"{{url-ambiente}}"
+							],
+							"path": [
+								"estoque",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Healthcheck",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Retorna 200 na requisição\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url-ambiente}}/estoque/healthcheck",
+					"host": [
+						"{{url-ambiente}}"
+					],
+					"path": [
+						"estoque",
+						"healthcheck"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Todos estoques - ERROR",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verifica se o array é do tamanho esperado\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(1);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-ambiente}}/estoque/",
+					"host": [
+						"{{url-ambiente}}"
+					],
+					"path": [
+						"estoque",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Todos estoques",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verifica status de retorno da requisição\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verifica se o array é do tamanho esperado\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"Verifica id estoque\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].id).to.eql(1);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-ambiente}}/estoque/",
+					"host": [
+						"{{url-ambiente}}"
+					],
+					"path": [
+						"estoque",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar produto",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 2,\n    \"nome\": \"Notebook\",\n    \"codigo\": \"AAA\",\n    \"valor\": 6000,\n    \"quantidade\": 20\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-ambiente}}/produto",
+					"host": [
+						"{{url-ambiente}}"
+					],
+					"path": [
+						"produto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Novo produto - Estoque",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"idEstoque\", 4);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Um produto\",\n    \"codigo\": \"BBB\",\n    \"valor\": 19.20,\n    \"quantidade\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-ambiente}}/estoque/{{idEstoque}}/inserirProduto",
+					"host": [
+						"{{url-ambiente}}"
+					],
+					"path": [
+						"estoque",
+						"{{idEstoque}}",
+						"inserirProduto"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{SENHA}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{USUARIO}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "USUARIO",
+			"value": "teste",
+			"type": "string"
+		},
+		{
+			"key": "SENHA",
+			"value": "teste",
+			"type": "string"
+		}
+	]
+}
